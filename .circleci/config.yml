@@ -6,16 +6,15 @@ jobs:
     steps:
      - run:
         name: check_env
-        commands: |
-            if curl -s --head "https://google.com" 
-            then
-            echo "It worked!"
-            else
-            echo "It failed"
-            fi
+        command: |
+          if curl -s --head "https://google.com" 
+          then
+          echo "It worked!"
+          else
+          echo "It failed"
+          fi
 workflows:
- yes:
+ yawa:
   jobs:
    - noo
  #success
-   

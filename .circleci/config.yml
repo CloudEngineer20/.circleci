@@ -1,25 +1,21 @@
 version: 2.1
-# Use a package of configuration called an orb.
-orbs:
-  # Declare a dependency on the welcome-orb
-  aws-cli: circleci/aws-cli@2.0.3
-# Orchestrate or schedule a set of jobs
 jobs:
-  create_infrastructure:
+  configure_infrastructure:
     docker:
-      - image: amazon/aws-cli
-    steps: 
-      - checkout
-      - run:
-          name: Ensure backend infrastructure exist
-          command: |
-            pwd
-            ls -la
-            aws cloudformation deploy \
-              --template-file template.yml \
-              --stack-name my-stack
+     - image: python:3.7-alpine3.11
+    steps:
+     - checkout
+     - add_ssh_keys:
+        fingerprints: [cd:7e:f6:a7:3e:a2:d9:89:8f:92:25:d1:b1:ef:c0:96]
+     - run:
+        name: install dependancies
+        command: |
+            app add --update ansible
+     - run:
+        name: configure server
+        command: |
+         ansible-playbook -i inventory.txt -main.yml  
 workflows:
-  shine:
-    jobs:
-       - create_infrastructure
-        
+  marryme:
+   jobs:
+    - configure_infrastructure

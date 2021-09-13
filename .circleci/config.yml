@@ -20,9 +20,9 @@ jobs:
               --template-file template.yml \
               --stack-name my-stack
 workflows:
-  do-cool-stuff:
+  shine:
     jobs:
-      - create_infrastructure:
+       - create_infrastructure:
           filters:
             branches:
               only: master

@@ -22,7 +22,5 @@ jobs:
 workflows:
   shine:
     jobs:
-       - create_infrastructure:
-          filters:
-            branches:
-              only: master
+       - create_infrastructure
+        

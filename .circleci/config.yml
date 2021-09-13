@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  name: smoke_test
+  name: noo
   docker:
    - image: alpine:latest
   steps:
@@ -17,6 +17,6 @@ jobs:
 workflows:
  yes:
   jobs:
-   - smoke_test
+   - noo
  #success
    

@@ -28,6 +28,11 @@ jobs:
             aws cloudformation deploy \
               --template-file template.yml \
               --stack-name my-stack
+  smoke_test:
+    docker:
+     - image: amazon/aws-cli
+    steps: 
+      - checkout
       - run: return 1
       - destroying_infrastructure
        
@@ -35,4 +40,7 @@ workflows:
   shine:
     jobs:
        - create_infrastructure
-  
+       - smoke_test:
+          requires:
+            - create_infrastructure
+

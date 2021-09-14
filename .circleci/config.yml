@@ -33,10 +33,7 @@ jobs:
      - image: amazon/aws-cli
     steps: 
       - checkout
-      - run:
-         name: instigate error
-         command: |
-          return 1
+      - run: return 1
       - destroying_infrastructure
        
 workflows:

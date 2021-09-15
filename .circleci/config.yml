@@ -27,6 +27,6 @@ workflows:
           filters:
             branches:
               only:
-                - CCI-Blue_Green_Deploymen
+                - CCI-Blue_Green_Deployment
 #work
        

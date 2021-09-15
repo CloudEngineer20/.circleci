@@ -17,13 +17,12 @@ jobs:
             pwd
             ls -la
             aws cloudformation deploy \
-              --template-file cloudfront.yml \
-              --stack-name production-distro \
-              --parameter-overrides PipelineID=udacityci.cd \
-              --tags project=udapeople &    
+            --template-file cloudfront.yml \
+            --stack-name production-distro \
+            --parameter-overrides PipelineID=udacityci.cd \
+            --tags project=udapeople &    
 workflows:
   shine:
     jobs:
        - create_infrastructure
        
-

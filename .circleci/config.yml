@@ -18,9 +18,12 @@ jobs:
             ls -la
             aws cloudformation deploy \
               --template-file cloudfront.yml \
-              --stack-name my-stack       
+              --stack-name production-distro \
+              --parameter-overrides PipelineID="udacityci.cd" \ # Name of the S3 bucket you created manually.
+              --tags project=udapeople &    
 workflows:
   shine:
     jobs:
        - create_infrastructure
        
+

@@ -6,24 +6,27 @@ orbs:
 # Orchestrate or schedule a set of jobs
 
 jobs:
-  create_and_deploy_front_end:
+  create_infrastructure:
     docker:
       - image: amazon/aws-cli
-    steps:
+    steps: 
       - checkout
       - run:
-          name: Execute bucket.yml - Create Cloudformation Stack
+          name: create cloudfront disti
           command: |
+            pwd
+            ls -la
             aws cloudformation deploy \
-            --template-file bucket.yml \
-            --stack-name stack-create-bucket-${CIRCLE_WORKFLOW_ID:0:7} \
-            --parameter-overrides MyBucketName="mybucket-${CIRCLE_WORKFLOW_ID:0:7}"
+            --template-file template.yml \
+            --stack-name production-distro \
+            --parameter-overrides PipelineID=udacity22 \
 workflows:
   shine:
     jobs:
-       - create_and_deploy_front_end
-       
- #NOP
-       
+       - create_infrastructure:
+          filters:
+            branches:
+              only:
+                - CCI-Blue_Green_Deploymen
 
        

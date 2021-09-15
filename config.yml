@@ -62,5 +62,33 @@ workflows:
             branches:
               only:
                 - CCI-Blue_Green_Deployment
+                
+       #code 3
+ version: 2.1
+# Use a package of configuration called an orb.
+orbs:
+  # Declare a dependency on the welcome-orb
+  aws-cli: circleci/aws-cli@2.0.3
+# Orchestrate or schedule a set of jobs
+
+jobs:
+  create_and_deploy_front_end:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Execute bucket.yml - Create Cloudformation Stack
+          command: |
+            aws cloudformation deploy \
+            --template-file bucket.yml \
+            --stack-name stack-create-bucket-${CIRCLE_WORKFLOW_ID:0:7} \
+            --parameter-overrides MyBucketName="mybucket-${CIRCLE_WORKFLOW_ID:0:7}"
+workflows:
+  shine:
+    jobs:
+       - create_and_deploy_front_end
+       
+ #NOP
 
           

@@ -24,5 +24,12 @@ jobs:
 workflows:
   shine:
     jobs:
-       - create_infrastructure
+       - create_infrastructure:
+          filters:
+            branches:
+              only:
+                - CCI-Blue_Green_Deployment
+
+       
+
        

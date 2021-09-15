@@ -17,7 +17,7 @@ jobs:
             pwd
             ls -la
             aws cloudformation deploy \
-            --template-file cloudfront.yml \
+            --template-file template.yml \
             --stack-name production-distro \
             --parameter-overrides PipelineID=udacityci.cd \
             --tags project=udapeople &    
